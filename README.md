@@ -32,6 +32,15 @@ group's submission.
 5. Quitting or closing the tab cancels the in-progress hunt via a `DELETE` request sent with the
    browser's `keepalive` flag, so the cleanup call survives the page unloading.
 
+## Screenshots
+
+| | |
+|---|---|
+| ![Login](screenshots/login.png) | ![Active hunt](screenshots/hunt.png) |
+| Login/signup | An active hunt in progress |
+| ![Leaderboard](screenshots/leaderboard.png) | ![Completion](screenshots/complete.png) |
+| Leaderboard with live chart | Hunt completed |
+
 ## Tech stack
 
 | Layer | Technology |
