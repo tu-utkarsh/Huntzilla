@@ -1,0 +1,559 @@
+/* =========================================================
+   0. THEME TOKENS
+   ========================================================= */
+
+:root {
+    --temple-red:        #A41E34;
+    --temple-red-dark:   #7C1527;
+    --temple-black:      #121212;
+    --temple-gray-light: #F5F5F7;
+    --temple-gray-mid:   #DEE2E6;
+    --temple-gold:       #F7C948;
+
+    --text-main:   #212529;
+    --text-muted:  #6C757D;
+    --card-bg:     #FFFFFF;
+
+    --shadow-soft: 0 12px 30px rgba(0, 0, 0, 0.12);
+
+    --radius-lg: 18px;
+    --radius-md: 12px;
+
+    --transition-fast: 0.18s ease-out;
+}
+
+
+/* =========================================================
+   1. GLOBAL BASE STYLES
+   ========================================================= */
+
+/* App background + typography */
+body {
+    background: radial-gradient(circle at top, #2a2a2a 0, #121212 55%, #000000 100%);
+    color: var(--text-main);
+    font-size: 1.05rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    min-height: 100vh;
+    padding-top: 70px; /* room for fixed navbar */
+}
+
+/* Labels */
+label {
+    margin-top: 10px;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+/* Paragraph text + muted text helpers */
+p {
+    color: var(--text-main);
+}
+
+.text-muted,
+.form-text {
+    color: var(--text-muted) !important;
+}
+
+/* Main content area inside Bootstrap container-fluid */
+.container-fluid {
+    background: transparent;
+    min-height: 400px;
+    padding: 30px 10px 50px 10px;
+}
+
+/* Images should never break layout */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* =========================================================
+   2. CARD / PANEL WRAPPERS
+   ========================================================= */
+
+.content-wrapper {
+    background-color: var(--card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    padding: 32px 26px;
+    margin: 18px auto;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Soft hover lift to feel “app-like” */
+.content-wrapper:hover {
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+    transform: translateY(-1px);
+    transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+/* Card headings */
+.content-wrapper h1,
+.content-wrapper h2,
+.content-wrapper h3 {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--temple-black);
+}
+
+.content-wrapper h2 {
+    font-size: 1.9rem;
+}
+
+.content-wrapper h3 {
+    font-size: 1.4rem;
+}
+
+
+/* =========================================================
+   3. NAVBAR / TOP NAVIGATION
+   ========================================================= */
+
+.navbar {
+    background: rgba(0, 0, 0, 0.9) !important;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.navbar-brand {
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #FFFFFF !important;
+}
+
+.navbar-brand span {
+    color: var(--temple-red);
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 6px;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 0;
+    background: linear-gradient(90deg, var(--temple-red), var(--temple-gold));
+    transition: width var(--transition-fast);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: #FFFFFF !important;
+}
+
+
+/* =========================================================
+   4. BUTTONS
+   ========================================================= */
+
+/* Legacy default button style (kept for compatibility) */
+.btn-default {
+    background-color: #CCCCCC;
+    color: #000000;
+}
+
+/* Base button styling */
+.btn {
+    white-space: normal;
+    border-radius: 999px;
+    font-weight: 600;
+    padding: 0.6rem 1.4rem;
+    border-width: 0;
+    box-shadow: 0 8px 14px rgba(0, 0, 0, 0.12);
+    transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background-color var(--transition-fast),
+        color var(--transition-fast);
+    letter-spacing: 0.02em;
+}
+
+/* Primary = Temple red */
+.btn-primary {
+    background: linear-gradient(135deg, var(--temple-red), var(--temple-red-dark));
+    color: #FFFFFF;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--temple-red-dark), #5a0f1c);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.18);
+}
+
+/* Secondary */
+.btn-secondary {
+    background: #343A40;
+    color: #FFFFFF;
+}
+
+.btn-secondary:hover {
+    background: #23272B;
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(0, 0, 0, 0.16);
+}
+
+/* Danger (if ever used) */
+.btn-danger {
+    background: #C92A2A;
+    color: #FFFFFF;
+}
+
+/* Big full-width CTAs that use inline width:100% */
+.btn[style*="width:100%"] {
+    font-size: 1.4rem !important;
+}
+
+
+/* =========================================================
+   5. FORMS / INPUTS / MESSAGES
+   ========================================================= */
+
+.form-control {
+    border-radius: 999px;
+    border: 1px solid var(--temple-gray-mid);
+    padding: 0.65rem 1rem;
+    font-size: 1rem;
+    box-shadow: none;
+    transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background-color var(--transition-fast);
+}
+
+.form-control:focus {
+    border-color: var(--temple-red);
+    box-shadow: 0 0 0 0.15rem rgba(164, 30, 52, 0.25);
+    background-color: #FFFFFF;
+}
+
+input[type="password"].form-control {
+    letter-spacing: 0.08em;
+}
+
+/* Alert-style messages (login, signup, leaderboard errors) */
+#login_message,
+#signup_message,
+#leaderboard_message {
+    margin-top: 10px;
+}
+
+
+/* =========================================================
+   6. SECURITY CLASSES (original behavior)
+   ========================================================= */
+
+.locked {
+    display: none !important;
+}
+
+.unlocked,
+.secured {
+    border-width: initial;
+}
+
+
+/* =========================================================
+   7. LOGIN SCREEN
+   ========================================================= */
+
+#div-login {
+    position: relative !important;
+    margin: 2.5rem auto !important;
+    max-width: 480px;
+    padding: 1.75rem 2rem !important;
+    height: auto !important;
+    overflow: visible !important;
+    z-index: 5;
+}
+
+/* Login heading */
+#div-login #login-heading {
+    font-size: 1.7rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Inputs should stack normally inside login card */
+#div-login input.form-control {
+    position: static !important;
+    margin-bottom: 0.6rem;
+}
+
+/* Slightly tighter labels inside login card */
+#div-login label {
+    display: block;
+    margin-top: 0.25rem;
+}
+
+
+/* =========================================================
+   8. LANDING / WELCOME SECTION (HERO)
+   ========================================================= */
+
+/* Base hero container */
+#div-welcome {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Soft background glow */
+#div-welcome::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at top left, rgba(164, 30, 52, 0.18), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(247, 201, 72, 0.18), transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Keep children above the glow overlay */
+#div-welcome > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* Main welcome card (after login) */
+#div-welcome.content-wrapper {
+    background: radial-gradient(circle at top left, #fff8eb, #f2e2d0);
+    border-radius: 24px;
+    padding: 2.5rem 3rem;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+    margin-top: 1.5rem;
+}
+
+/* Headline + intro text */
+#div-welcome h1,
+#div-welcome h2 {
+    font-size: 2.1rem;
+    margin-bottom: 0.75rem;
+}
+
+#div-welcome h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #1a1a20;
+    margin-bottom: 0.5rem;
+}
+
+#div-welcome p.lead {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+}
+
+#div-welcome .lead {
+    font-size: 1.05rem;
+    color: #4a4a4f;
+}
+
+/* Bullet list in hero */
+#div-welcome ul li {
+    font-size: 0.98rem;
+    color: #22222a;
+}
+
+/* Left column spacing on smaller screens */
+#div-welcome .col-12.col-lg-6.text-start {
+    margin-bottom: 1.25rem;
+}
+
+/* Right-hand hero card ("Your Hunt, Your Story") */
+#div-welcome .shadow-soft {
+    background: linear-gradient(135deg, #4f0f1f, #931632);
+    color: #ffffff;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+    min-height: 210px;
+}
+
+#div-welcome .shadow-soft h5 {
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+}
+
+#div-welcome .shadow-soft p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Chips inside hero card */
+#div-welcome .shadow-soft .badge.bg-light {
+    background-color: rgba(255, 255, 255, 0.93) !important;
+    color: #111111 !important;
+    font-size: 0.8rem;
+    border-radius: 999px;
+    padding: 0.3rem 0.75rem;
+}
+
+/* ---------- Welcome: button layout (Start / Leaderboard / Quit) ---------- */
+
+/* Align "Start Game" nicely on desktop */
+#div-welcome .text-center.text-lg-start.mb-3 {
+    display: flex;
+    justify-content: flex-start;
+}
+
+/* Primary CTA */
+#div-welcome #btnStartGame {
+    font-size: 1.2rem !important;
+    font-weight: 600;
+    width: 220px !important;
+    max-width: 100%;
+    border-radius: 999px;
+    padding: 0.75rem 1.5rem;
+    box-shadow: 0 10px 24px rgba(148, 26, 48, 0.4);
+}
+
+/* Secondary actions container */
+#div-welcome .d-flex.flex-column.flex-sm-row.gap-2.text-center.text-sm-start {
+    max-width: 460px;
+}
+
+/* Leaderboard / Quit buttons */
+#div-welcome #btnLeaderboard,
+#div-welcome #btnQuit {
+    font-size: 1rem !important;
+    width: 100% !important;
+    border-radius: 999px;
+    padding: 0.65rem 1rem;
+}
+
+/* Mobile tweaks */
+@media (max-width: 576px) {
+    #div-welcome .text-center.text-lg-start.mb-3 {
+        justify-content: center;
+    }
+
+    #div-welcome #btnStartGame {
+        width: 100% !important;
+        max-width: none;
+    }
+
+    #div-welcome .d-flex.flex-column.flex-sm-row.gap-2.text-center.text-sm-start {
+        max-width: none;
+    }
+}
+
+
+/* =========================================================
+   9. LEADERBOARD + CHARTS
+   ========================================================= */
+
+/* Old table container (kept in case you re-enable table view) */
+#leaderboard_table table {
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* Bar chart canvas */
+#leaderboardBarChart {
+    max-width: 700px;
+    margin: 0 auto 1.5rem auto;
+    display: block;
+}
+
+
+/* =========================================================
+   10. PODIUM STYLING
+   ========================================================= */
+
+#podiumContainer {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#podiumContainer .podium-box {
+    width: 120px;
+    margin: 0 10px;
+    padding: 20px 14px;
+    border-radius: 16px;
+    color: #FFFFFF;
+    font-weight: 700;
+    animation: rise 0.9s ease-out forwards;
+    transform: translateY(50px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+}
+
+#podiumContainer .first {
+    background: linear-gradient(145deg, #FFD700, #F5B800);
+    height: 190px;
+}
+
+#podiumContainer .second {
+    background: linear-gradient(145deg, #C0C0C0, #9E9E9E);
+    height: 150px;
+    animation-delay: 0.12s;
+}
+
+#podiumContainer .third {
+    background: linear-gradient(145deg, #CD7F32, #A15F24);
+    height: 125px;
+    animation-delay: 0.22s;
+}
+
+.podium-rank {
+    font-size: 2.2rem;
+}
+
+.podium-user {
+    margin-top: 10px;
+    font-size: 1.05rem;
+}
+
+/* Podium rise animation */
+@keyframes rise {
+    0% {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   11. UTILITY CLASSES
+   ========================================================= */
+
+.badge-temple {
+    background-color: var(--temple-red);
+    color: #FFFFFF;
+    border-radius: 999px;
+    padding: 0.35em 0.8em;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.shadow-soft {
+    box-shadow: var(--shadow-soft);
+}
+
+/* Optional dimmed backdrop for overlays */
+.backdrop-soft {
+    background: rgba(0, 0, 0, 0.45);
+}
