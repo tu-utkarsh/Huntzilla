@@ -15,7 +15,6 @@ import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
 
 // SECURITY NOTE:
 // The original submitted version of this file hardcoded live database
-// credentials directly in source. That credential has since been rotated.
 // Credentials are now read from Lambda environment variables instead -
 // configure these under Lambda > Configuration > Environment variables.
 const dboptions = {
